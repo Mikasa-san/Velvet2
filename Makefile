@@ -1,12 +1,13 @@
+ARCHS := arm64 arm64e
 TARGET := iphone:clang:latest:15.0
-INSTALL_TARGET_PROCESSES = SpringBoard
-
+DEBUG := 0
 include $(THEOS)/makefiles/common.mk
+INSTALL_TARGET_PROCESSES = SpringBoard
 
 TWEAK_NAME = Velvet2
 
-Velvet2_FILES = src/Tweak.x src/UIColor+Velvet.m src/Velvet2PrefsManager.m src/ColorDetection.m src/Velvet2Colorizer.m
-Velvet2_CFLAGS = -fobjc-arc
+$(TWEAK_NAME)_FILES = src/Tweak.xm src/UIColor+Velvet.m src/Velvet2PrefsManager.m src/ColorDetection.m src/Velvet2Colorizer.m
+$(TWEAK_NAME)_CFLAGS := -fobjc-arc -Os
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 SUBPROJECTS += preferences
